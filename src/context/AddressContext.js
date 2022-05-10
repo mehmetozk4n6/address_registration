@@ -32,7 +32,6 @@ export const AdressProvider = ({ children }) => {
       );
 
   const editAdresses = (adress, id) => {
-    console.log(adress);
     axios
       .put(`${process.env.REACT_APP_ADRESSES_API_URL}${id}`, { ...adress })
       .then(() => getAdresses())

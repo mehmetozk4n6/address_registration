@@ -5,6 +5,9 @@
 li {
   list-style-type: none;
 }
+tr {
+  cursor: pointer;
+}
 
 .navBar {
   background-color: #c43042;
