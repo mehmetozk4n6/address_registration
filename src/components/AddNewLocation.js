@@ -38,7 +38,7 @@ function AddNewLocation({ handleClose, show }) {
           <Modal.Header closeButton>
             <Modal.Title>Add New Location</Modal.Title>
           </Modal.Header>
-          <Modal.Body className="d-flex flex-column justify-content-center align-items-center">
+          <Modal.Body className="d-flex flex-column justify-content-center align-items-start modalAddEdit">
             <input
               name="name"
               id="name"

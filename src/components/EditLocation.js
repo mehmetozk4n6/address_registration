@@ -42,7 +42,7 @@ function EditLocation({ handleClose, show, adress }) {
           <Modal.Header closeButton>
             <Modal.Title>Edit Location</Modal.Title>
           </Modal.Header>
-          <Modal.Body className="d-flex flex-column justify-content-center align-items-center">
+          <Modal.Body className="d-flex flex-column justify-content-center align-items-start modalAddEdit">
             <label htmlFor="name">Name</label>
             <input
               name="name"

@@ -53,3 +53,13 @@ li {
 .error {
   color: #b90e0e;
 }
+
+.modalAddEdit input {
+  padding: 5px;
+  background-color: rgb(241, 239, 239);
+  border: none;
+  width: 100%;
+}
+.modalAddEdit label {
+  color: gray;
+}
