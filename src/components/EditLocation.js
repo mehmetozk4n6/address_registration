@@ -1,44 +1,40 @@
 import { useFormik } from "formik";
 import validationSchema from "./validations";
 import { Modal, Button } from "react-bootstrap";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AdressContext } from "../context/AddressContext";
 import moment from "moment";
 
 function EditLocation({ handleClose, show, adress }) {
   const { editAdresses, deleteAdresses } = useContext(AdressContext);
+  useEffect(() => {}, [adress]);
 
   const handleDelete = () => {
     handleClose();
     deleteAdresses(adress.id);
   };
-  const {
-    handleSubmit,
-    handleChange,
-    handleBlur,
-    values,
-    errors,
-    touched,
-    enableReinitialize,
-  } = useFormik({
-    initialValues: {
-      name: adress.name,
-      adress: adress.adress,
-      openingTime: moment(adress.openingTime).format("HH:mm:ss"),
-      closingTime: moment(adress.closingTime).format("HH:mm:ss"),
-    },
-    enableReinitialize: true,
-    onSubmit: (values) => {
-      // values.openingTime = Date.parse(`01 Jan 1970 ${values.openingTime} GMT`);
-      // values.closingTime = Date.parse(`01 Jan 1970 ${values.closingTime} GMT`);
-      // console.log(values.openingTime);
-      // console.log(values.closingTime);
-      editAdresses(values, adress.id);
-      handleClose();
-    },
-    validationSchema,
-  });
-  console.log(values);
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        name: adress.name,
+        adress: adress.adress,
+        openingTime: moment(adress.openingTime).format("HH:mm"),
+        closingTime: moment(adress.closingTime).format("HH:mm"),
+      },
+      enableReinitialize: true,
+      onSubmit: (values) => {
+        values.openingTime = Date.parse(
+          `01 Jan 1970 ${values.openingTime}:00 `
+        );
+        values.closingTime = Date.parse(
+          `01 Jan 1970 ${values.closingTime}:00 `
+        );
+        editAdresses(values, adress.id);
+        handleClose();
+      },
+      validationSchema,
+    });
+
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
@@ -68,9 +64,9 @@ function EditLocation({ handleClose, show, adress }) {
               placeholder="Address"
               className="ps-2"
             />
-            {/* {errors.adress && touched.adress && (
+            {errors.adress && touched.adress && (
               <div className="error">{errors.adress}</div>
-            )} */}
+            )}
             <br />
             <br />
             <input
@@ -81,10 +77,10 @@ function EditLocation({ handleClose, show, adress }) {
               onBlur={handleBlur}
               placeholder="Opening Time"
               className="ps-2"
+              min="00:00"
+              max="23:59"
             />
-            {/* {errors.openingTime && touched.openingTime && (
-              <div className="error">{errors.openingTime}</div>
-            )} */}
+
             <br />
             <br />
 
@@ -97,9 +93,7 @@ function EditLocation({ handleClose, show, adress }) {
               placeholder="Closing Time"
               className="ps-2"
             />
-            {/* {errors.closingTime && touched.closingTime && (
-              <div className="error">{errors.closingTime}</div>
-            )} */}
+
             <br />
             <br />
           </Modal.Body>

@@ -7,7 +7,6 @@ function Items({ currentItems }) {
   const [show, setShow] = useState(false);
   const [adress, setAdress] = useState({});
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const getAdress = (id) =>
     setAdress(currentItems.filter((item) => item.id === id)[0]);

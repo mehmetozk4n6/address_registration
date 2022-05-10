@@ -19,10 +19,12 @@ export const AdressProvider = ({ children }) => {
     axios
       .post(`${process.env.REACT_APP_ADRESSES_API_URL}`, adress)
       .then(() => getAdresses());
-  const editAdresses = (adress, id) =>
+  const editAdresses = (adress, id) => {
+    console.log(adress);
     axios
-      .put(`${process.env.REACT_APP_ADRESSES_API_URL}${id}`, adress)
+      .put(`${process.env.REACT_APP_ADRESSES_API_URL}${id}`, { ...adress })
       .then(() => getAdresses());
+  };
   const deleteAdresses = (id) =>
     axios
       .delete(`${process.env.REACT_APP_ADRESSES_API_URL}${id}`)

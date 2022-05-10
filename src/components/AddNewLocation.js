@@ -16,12 +16,17 @@ function AddNewLocation({ handleClose, show }) {
         closingTime: "",
       },
       onSubmit: (values) => {
-        console.log(values);
+        values.openingTime = Date.parse(
+          `01 Jan 1970 ${values.openingTime}:00 `
+        );
+        values.closingTime = Date.parse(
+          `01 Jan 1970 ${values.closingTime}:00 `
+        );
         addAdresses(values);
         values.name = "";
         values.adress = "";
-        values.openingTime = moment(Date.now()).format("HH:mm:ss");
-        values.closingTime = moment(Date.now).format("HH:mm:ss");
+        values.openingTime = moment(Date.now()).format("HH:mm");
+        values.closingTime = moment(Date.now).format("HH:mm");
         handleClose();
       },
       validationSchema,
@@ -69,9 +74,7 @@ function AddNewLocation({ handleClose, show }) {
               placeholder="Opening Time"
               className="ps-2"
             />
-            {/* {errors.openingTime && touched.openingTime && (
-              <div className="error">{errors.openingTime}</div>
-            )} */}
+
             <br />
             <br />
 
@@ -84,9 +87,7 @@ function AddNewLocation({ handleClose, show }) {
               placeholder="Closing Time"
               className="ps-2"
             />
-            {/* {errors.closingTime && touched.closingTime && (
-              <div className="error">{errors.closingTime}</div>
-            )} */}
+
             <br />
             <br />
           </Modal.Body>
