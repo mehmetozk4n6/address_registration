@@ -29,10 +29,10 @@ function EditLocation({ handleClose, show, adress }) {
     },
     enableReinitialize: true,
     onSubmit: (values) => {
-      values.openingTime = Date.parse(`01 Jan 1970 ${values.openingTime} GMT`);
-      values.closingTime = Date.parse(`01 Jan 1970 ${values.closingTime} GMT`);
-      console.log(values.openingTime);
-      console.log(values.closingTime);
+      // values.openingTime = Date.parse(`01 Jan 1970 ${values.openingTime} GMT`);
+      // values.closingTime = Date.parse(`01 Jan 1970 ${values.closingTime} GMT`);
+      // console.log(values.openingTime);
+      // console.log(values.closingTime);
       editAdresses(values, adress.id);
       handleClose();
     },
@@ -87,11 +87,7 @@ function EditLocation({ handleClose, show, adress }) {
             )} */}
             <br />
             <br />
-            {/* <Timepicker
-              value={values.closingTime}
-              handleChange={handleChange}
-              className="ps-2"
-            /> */}
+
             <input
               type="time"
               name="closingTime"

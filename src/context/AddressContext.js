@@ -21,9 +21,7 @@ export const AdressProvider = ({ children }) => {
       .then(() => getAdresses());
   const editAdresses = (adress, id) =>
     axios
-      .put(`${process.env.REACT_APP_ADRESSES_API_URL}${id}`, {
-        ...adress,
-      })
+      .put(`${process.env.REACT_APP_ADRESSES_API_URL}${id}`, adress)
       .then(() => getAdresses());
   const deleteAdresses = (id) =>
     axios
