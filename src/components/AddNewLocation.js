@@ -3,7 +3,6 @@ import validationSchema from "./validations";
 import { Modal, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AdressContext } from "../context/AddressContext";
-import Timepicker from "./Timepicker";
 import moment from "moment";
 
 function AddNewLocation({ handleClose, show }) {
@@ -14,15 +13,15 @@ function AddNewLocation({ handleClose, show }) {
         name: "",
         adress: "",
         openingTime: "",
-        closingTime: moment(),
+        closingTime: "",
       },
       onSubmit: (values) => {
         console.log(values);
         addAdresses(values);
         values.name = "";
         values.adress = "";
-        values.openingTime = "";
-        values.closingTime = "";
+        values.openingTime = moment(Date.now()).format("HH:mm:ss");
+        values.closingTime = moment(Date.now).format("HH:mm:ss");
         handleClose();
       },
       validationSchema,
@@ -63,31 +62,28 @@ function AddNewLocation({ handleClose, show }) {
             <br />
             <input
               name="openingTime"
+              type="time"
               value={values.openingTime}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Opening Time"
               className="ps-2"
             />
-            {errors.openingTime && touched.openingTime && (
+            {/* {errors.openingTime && touched.openingTime && (
               <div className="error">{errors.openingTime}</div>
-            )}
+            )} */}
             <br />
             <br />
-            <Timepicker
+
+            <input
               name="closingTime"
-              value={values.closingTime}
-              handleChange={handleChange}
-              className="ps-2"
-            />
-            {/* <input
-              name="closingTime"
+              type="time"
               value={values.closingTime}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Closing Time"
               className="ps-2"
-            /> */}
+            />
             {/* {errors.closingTime && touched.closingTime && (
               <div className="error">{errors.closingTime}</div>
             )} */}

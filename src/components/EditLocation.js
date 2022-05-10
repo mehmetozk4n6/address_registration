@@ -3,7 +3,7 @@ import validationSchema from "./validations";
 import { Modal, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AdressContext } from "../context/AddressContext";
-import Timepicker from "./Timepicker";
+import moment from "moment";
 
 function EditLocation({ handleClose, show, adress }) {
   const { editAdresses, deleteAdresses } = useContext(AdressContext);
@@ -24,11 +24,15 @@ function EditLocation({ handleClose, show, adress }) {
     initialValues: {
       name: adress.name,
       adress: adress.adress,
-      openingTime: adress.openingTime,
-      closingTime: adress.closingTime,
+      openingTime: moment(adress.openingTime).format("HH:mm:ss"),
+      closingTime: moment(adress.closingTime).format("HH:mm:ss"),
     },
     enableReinitialize: true,
     onSubmit: (values) => {
+      values.openingTime = Date.parse(`01 Jan 1970 ${values.openingTime} GMT`);
+      values.closingTime = Date.parse(`01 Jan 1970 ${values.closingTime} GMT`);
+      console.log(values.openingTime);
+      console.log(values.closingTime);
       editAdresses(values, adress.id);
       handleClose();
     },
@@ -64,12 +68,13 @@ function EditLocation({ handleClose, show, adress }) {
               placeholder="Address"
               className="ps-2"
             />
-            {errors.adress && touched.adress && (
+            {/* {errors.adress && touched.adress && (
               <div className="error">{errors.adress}</div>
-            )}
+            )} */}
             <br />
             <br />
             <input
+              type="time"
               name="openingTime"
               value={values.openingTime}
               onChange={handleChange}
@@ -77,24 +82,25 @@ function EditLocation({ handleClose, show, adress }) {
               placeholder="Opening Time"
               className="ps-2"
             />
-            {errors.openingTime && touched.openingTime && (
+            {/* {errors.openingTime && touched.openingTime && (
               <div className="error">{errors.openingTime}</div>
-            )}
+            )} */}
             <br />
             <br />
-            <Timepicker
+            {/* <Timepicker
               value={values.closingTime}
               handleChange={handleChange}
               className="ps-2"
-            />
-            {/* <input
+            /> */}
+            <input
+              type="time"
               name="closingTime"
               value={values.closingTime}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Closing Time"
               className="ps-2"
-            /> */}
+            />
             {/* {errors.closingTime && touched.closingTime && (
               <div className="error">{errors.closingTime}</div>
             )} */}

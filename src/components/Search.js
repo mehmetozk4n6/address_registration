@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import PaginatedTable from "./PaginatedTable";
 import AddNewLocation from "./AddNewLocation";
-import Timepicker from "./Timepicker";
 
 function Search() {
   const [show, setShow] = useState(false);
@@ -25,7 +24,6 @@ function Search() {
           </Button>
           <AddNewLocation handleClose={handleClose} show={show} />
         </div>
-        <Timepicker />
       </div>
       <PaginatedTable />
     </div>
