@@ -41,6 +41,7 @@ function AddNewLocation({ handleClose, show }) {
           <Modal.Body className="d-flex flex-column justify-content-center align-items-center">
             <input
               name="name"
+              id="name"
               value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -52,8 +53,10 @@ function AddNewLocation({ handleClose, show }) {
             )}
             <br />
             <br />
+
             <input
               name="adress"
+              id="adress"
               value={values.adress}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -65,8 +68,10 @@ function AddNewLocation({ handleClose, show }) {
             )}
             <br />
             <br />
+            <label htmlFor="openingTime">Opening Time</label>
             <input
               name="openingTime"
+              id="openingTime"
               type="time"
               value={values.openingTime}
               onChange={handleChange}
@@ -77,9 +82,10 @@ function AddNewLocation({ handleClose, show }) {
 
             <br />
             <br />
-
+            <label htmlFor="closingTime">Closing Time</label>
             <input
               name="closingTime"
+              id="closingTime"
               type="time"
               value={values.closingTime}
               onChange={handleChange}

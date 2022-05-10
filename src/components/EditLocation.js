@@ -16,10 +16,10 @@ function EditLocation({ handleClose, show, adress }) {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        name: adress.name,
-        adress: adress.adress,
-        openingTime: moment(adress.openingTime).format("HH:mm"),
-        closingTime: moment(adress.closingTime).format("HH:mm"),
+        name: adress.name || "",
+        adress: adress.adress || "",
+        openingTime: moment(adress.openingTime).format("HH:mm") || "",
+        closingTime: moment(adress.closingTime).format("HH:mm") || "",
       },
       enableReinitialize: true,
       onSubmit: (values) => {
@@ -43,8 +43,10 @@ function EditLocation({ handleClose, show, adress }) {
             <Modal.Title>Edit Location</Modal.Title>
           </Modal.Header>
           <Modal.Body className="d-flex flex-column justify-content-center align-items-center">
+            <label htmlFor="name">Name</label>
             <input
               name="name"
+              id="name"
               value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -56,8 +58,10 @@ function EditLocation({ handleClose, show, adress }) {
             )}
             <br />
             <br />
+            <label htmlFor="adress">Address</label>
             <input
               name="adress"
+              id="adress"
               value={values.adress}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -69,9 +73,11 @@ function EditLocation({ handleClose, show, adress }) {
             )}
             <br />
             <br />
+            <label htmlFor="openingTime">Opening Time</label>
             <input
               type="time"
               name="openingTime"
+              id="openingTime"
               value={values.openingTime}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -83,10 +89,11 @@ function EditLocation({ handleClose, show, adress }) {
 
             <br />
             <br />
-
+            <label htmlFor="closingTime">Closing Time</label>
             <input
               type="time"
               name="closingTime"
+              id="closingTime"
               value={values.closingTime}
               onChange={handleChange}
               onBlur={handleBlur}
