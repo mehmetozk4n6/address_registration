@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Container, Row, Col } from "react-bootstrap";
+import SideBar from "./components/SideBar";
+import NavigationBar from "./components/NavigationBar";
+import Header from "./components/Header";
+import Search from "./components/Search";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavigationBar />
+      <Header />
+      <Container>
+        <Row>
+          <Col xs={3} className="border-end border-5 pt-5 side">
+            <SideBar />
+          </Col>
+          <Col xs={9}>
+            <Search />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

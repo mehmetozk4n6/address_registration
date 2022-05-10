@@ -1,38 +1,55 @@
 .App {
   text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+li {
+  list-style-type: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navBar {
+  background-color: #c43042;
+  color: #fff;
+}
+.navbar-brand img {
+  width: 80px;
+}
+.subHeader li:hover {
+  color: #000;
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.side {
   min-height: 100vh;
+}
+.sideBar li {
+  margin: 5px 0;
+}
+.sideBar li:hover {
+  color: #000;
+  cursor: pointer;
+}
+.sideBar li svg {
+  margin-right: 4px;
+}
+.pagination {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  float: right;
+}
+.pagination li {
+  color: grey;
+  margin-right: 8px;
+}
+.pagination li:hover {
+  color: rgb(192, 10, 10);
 }
 
-.App-link {
-  color: #61dafb;
+.pagination li a {
+  text-decoration: none;
+  color: grey;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pagination li a:hover {
+  color: rgb(192, 10, 10);
+}
+.error {
+  color: #b90e0e;
 }
