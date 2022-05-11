@@ -9,10 +9,8 @@ export const AdressProvider = ({ children }) => {
   const [adresses, setAdresses] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
-
-  const filteredItems = adresses?.filter((adress) =>
-    adress?.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  const [filteredItems, setFilteredItems] = useState(null);
+  const [itemOffset, setItemOffset] = useState(0);
 
   const getAdresses = () => {
     setIsLoading(true);
@@ -20,6 +18,7 @@ export const AdressProvider = ({ children }) => {
       .get(`${process.env.REACT_APP_ADRESSES_API_URL}`)
       .then((response) => setAdresses(response.data))
       .then(() => setIsLoading(false));
+    setItemOffset(0);
   };
 
   const addAdresses = (adress) =>
@@ -69,7 +68,18 @@ export const AdressProvider = ({ children }) => {
     getAdresses();
   }, []);
 
+  useEffect(() => {
+    setFilteredItems(
+      adresses?.filter((adress) =>
+        adress?.name.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
+    setItemOffset(0);
+  }, [searchValue, adresses]);
+
   const values = {
+    itemOffset,
+    setItemOffset,
     filteredItems,
     setSearchValue,
     searchValue,

@@ -4,10 +4,10 @@ import ReactPaginate from "react-paginate";
 import Items from "./Items";
 
 function PaginatedTable() {
-  const { adresses, isLoading, filteredItems } = useContext(AdressContext);
+  const { isLoading, filteredItems, itemOffset, setItemOffset } =
+    useContext(AdressContext);
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
 
   let itemsPerPage = 10;
 
@@ -15,6 +15,7 @@ function PaginatedTable() {
     if (!filteredItems && !filteredItems?.length > 0) {
       return;
     }
+
     // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(filteredItems?.slice(itemOffset, endOffset));
