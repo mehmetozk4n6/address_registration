@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 import Items from "./Items";
 
 function PaginatedTable() {
-  const { adresses, isLoading } = useContext(AdressContext);
+  const { adresses, isLoading, filteredItems } = useContext(AdressContext);
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -12,18 +12,18 @@ function PaginatedTable() {
   let itemsPerPage = 10;
 
   useEffect(() => {
-    if (!adresses && !adresses?.length > 0) {
+    if (!filteredItems && !filteredItems?.length > 0) {
       return;
     }
     // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(adresses?.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(adresses?.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, adresses]);
+    setCurrentItems(filteredItems?.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(filteredItems?.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, filteredItems]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % adresses?.length;
+    const newOffset = (event.selected * itemsPerPage) % filteredItems?.length;
     setItemOffset(newOffset);
   };
 

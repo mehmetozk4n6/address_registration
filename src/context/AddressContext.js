@@ -8,6 +8,11 @@ export const AdressContext = createContext();
 export const AdressProvider = ({ children }) => {
   const [adresses, setAdresses] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+
+  const filteredItems = adresses?.filter((adress) =>
+    adress?.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   const getAdresses = () => {
     setIsLoading(true);
@@ -45,6 +50,7 @@ export const AdressProvider = ({ children }) => {
         })
       );
   };
+
   const deleteAdresses = (id) =>
     axios
       .delete(`${process.env.REACT_APP_ADRESSES_API_URL}${id}`)
@@ -64,6 +70,9 @@ export const AdressProvider = ({ children }) => {
   }, []);
 
   const values = {
+    filteredItems,
+    setSearchValue,
+    searchValue,
     getAdresses,
     addAdresses,
     editAdresses,
