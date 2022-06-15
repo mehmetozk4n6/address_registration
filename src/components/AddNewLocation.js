@@ -16,12 +16,8 @@ function AddNewLocation({ handleClose, show }) {
         closingTime: "",
       },
       onSubmit: (values) => {
-        values.openingTime = Date.parse(
-          `01 Jan 1970 ${values.openingTime}:00 `
-        );
-        values.closingTime = Date.parse(
-          `01 Jan 1970 ${values.closingTime}:00 `
-        );
+        values.openingTime = Date.parse(`01 Jan 1970 ${values.openingTime}:00`);
+        values.closingTime = Date.parse(`01 Jan 1970 ${values.closingTime}:00`);
         addAdresses(values);
         values.name = "";
         values.adress = "";

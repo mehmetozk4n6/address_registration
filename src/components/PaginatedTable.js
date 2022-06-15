@@ -15,7 +15,6 @@ function PaginatedTable() {
     if (!filteredItems && !filteredItems?.length > 0) {
       return;
     }
-
     // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(filteredItems?.slice(itemOffset, endOffset));

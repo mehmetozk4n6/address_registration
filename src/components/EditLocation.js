@@ -1,13 +1,12 @@
 import { useFormik } from "formik";
 import validationSchema from "./validations";
 import { Modal, Button } from "react-bootstrap";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AdressContext } from "../context/AddressContext";
 import moment from "moment";
 
 function EditLocation({ handleClose, show, adress }) {
   const { editAdresses, deleteAdresses } = useContext(AdressContext);
-  useEffect(() => {}, [adress]);
 
   const handleDelete = () => {
     handleClose();
@@ -23,12 +22,11 @@ function EditLocation({ handleClose, show, adress }) {
       },
       enableReinitialize: true,
       onSubmit: (values) => {
-        values.openingTime = Date.parse(
-          `01 Jan 1970 ${values.openingTime}:00 `
-        );
-        values.closingTime = Date.parse(
-          `01 Jan 1970 ${values.closingTime}:00 `
-        );
+        values.openingTime = moment(
+          `1970-01-01T${values.openingTime}:00.000`
+        ).format();
+
+        values.closingTime = Date.parse(`01 Jan 1970 ${values.closingTime}:00`);
         editAdresses(values, adress.id);
         handleClose();
       },
