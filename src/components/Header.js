@@ -7,9 +7,7 @@ function Header() {
       <Container>
         <Row>
           <Col xs={3}></Col>
-          <Col xs={9} className="p-1 text-start fw-bold">
-            Pubinno Test
-          </Col>
+          <Col xs={9} className="p-1 text-start fw-bold"></Col>
         </Row>
       </Container>
     </div>
